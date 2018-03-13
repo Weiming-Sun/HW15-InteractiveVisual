@@ -11,7 +11,6 @@ def home():
     """Render Home Page."""
     return render_template("index.html")
 
-
 @app.route("/samples/<sample>")
 def samples(sample):
 
@@ -27,10 +26,20 @@ def samples(sample):
     labels = selecttempdf["b"].values.tolist()
     hovertext = selecttempdf["c"].values.tolist()
 
-    piedata = [{"labels": labels, "values": values, "hovertext": hovertext, "type": "pie"}]
-    bubbledata = [{"x": x, "y": y, "hovertext": text, "mode": "markers", "marker": {"size": y}}]
-    
-    return jsonify(piedata, bubbledata)
+    piedata = {"labels": labels, "values": values, "hovertext": hovertext, "type": "pie"}
+
+    return jsonify(piedata)
+
+@app.route("/samples/<sample>/otu")
+def samplesotu(sample):
+
+    x = otudf['otu_id'].values.tolist()
+    y = df[sample].values.tolist()
+    hovertext = otudf['lowest_taxonomic_unit_found'].values.tolist()
+
+    bubbledata = {"x": x, "y": y, "hovertext": hovertext, "mode": "markers", "marker": {"size": y}}
+
+    return jsonify(bubbledata)
 
 if __name__ == '__main__':
     app.run(debug=True)
