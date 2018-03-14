@@ -5,225 +5,244 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Belly Button Biodiversity</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <div id="pie"></div>
-    <script>        
-        // Plot the default route once the page loads
-        var url = "/samples/BB_940";
-        Plotly.d3.json(url, function(error, response) {
-            if (error) return console.warn(error);
-            console.log(response);
-            data = [response];
-            var layout = {
-                title: "PIE chart",
-                showlegend: true};
-            var PIE = document.getElementById('pie');
-            Plotly.plot(PIE, data, layout)
-        })
+    <div class="container">
+        <div class="jumbotron mt-3 text-center">
+            <h1><strong>Belly Button Biodiversity Dashboard</strong></h1>
+            <p class="lead">Use the interactive charts below to explore the dataset</p>
+        </div>
+    </div>
 
-        function updatePlotly(newdata){
-            var PIE = document.getElementById('pie');
-            Plotly.restyle(PIE, 'values', [newdata.values]);
-            Plotly.restyle(PIE, 'hovertext', [newdata.hovertext]);
-            Plotly.restyle(PIE, 'labels', [newdata.labels])
-        }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <select id='selDataset' onchange='optionChanged(this.value), optionChanged2(this.value)'>
+                        <option value='BB_940'>BB_940</option>
+                        <option value='BB_941'>BB_941</option>
+                        <option value='BB_943'>BB_943</option>
+                        <option value='BB_944'>BB_944</option>
+                        <option value='BB_945'>BB_945</option>
+                        <option value='BB_946'>BB_946</option>
+                        <option value='BB_947'>BB_947</option>
+                        <option value='BB_948'>BB_948</option>
+                        <option value='BB_949'>BB_949</option>
+                        <option value='BB_950'>BB_950</option>
+                        <option value='BB_952'>BB_952</option>
+                        <option value='BB_953'>BB_953</option>
+                        <option value='BB_954'>BB_954</option>
+                        <option value='BB_955'>BB_955</option>
+                        <option value='BB_956'>BB_956</option>
+                        <option value='BB_958'>BB_958</option>
+                        <option value='BB_959'>BB_959</option>
+                        <option value='BB_960'>BB_960</option>
+                        <option value='BB_961'>BB_961</option>
+                        <option value='BB_962'>BB_962</option>
+                        <option value='BB_963'>BB_963</option>
+                        <option value='BB_964'>BB_964</option>
+                        <option value='BB_966'>BB_966</option>
+                        <option value='BB_967'>BB_967</option>
+                        <option value='BB_968'>BB_968</option>
+                        <option value='BB_969'>BB_969</option>
+                        <option value='BB_970'>BB_970</option>
+                        <option value='BB_971'>BB_971</option>
+                        <option value='BB_972'>BB_972</option>
+                        <option value='BB_973'>BB_973</option>
+                        <option value='BB_974'>BB_974</option>
+                        <option value='BB_975'>BB_975</option>
+                        <option value='BB_978'>BB_978</option>
+                        <option value='BB_1233'>BB_1233</option>
+                        <option value='BB_1234'>BB_1234</option>
+                        <option value='BB_1235'>BB_1235</option>
+                        <option value='BB_1236'>BB_1236</option>
+                        <option value='BB_1237'>BB_1237</option>
+                        <option value='BB_1238'>BB_1238</option>
+                        <option value='BB_1242'>BB_1242</option>
+                        <option value='BB_1243'>BB_1243</option>
+                        <option value='BB_1246'>BB_1246</option>
+                        <option value='BB_1253'>BB_1253</option>
+                        <option value='BB_1254'>BB_1254</option>
+                        <option value='BB_1258'>BB_1258</option>
+                        <option value='BB_1259'>BB_1259</option>
+                        <option value='BB_1260'>BB_1260</option>
+                        <option value='BB_1264'>BB_1264</option>
+                        <option value='BB_1265'>BB_1265</option>
+                        <option value='BB_1273'>BB_1273</option>
+                        <option value='BB_1275'>BB_1275</option>
+                        <option value='BB_1276'>BB_1276</option>
+                        <option value='BB_1277'>BB_1277</option>
+                        <option value='BB_1278'>BB_1278</option>
+                        <option value='BB_1279'>BB_1279</option>
+                        <option value='BB_1280'>BB_1280</option>
+                        <option value='BB_1281'>BB_1281</option>
+                        <option value='BB_1282'>BB_1282</option>
+                        <option value='BB_1283'>BB_1283</option>
+                        <option value='BB_1284'>BB_1284</option>
+                        <option value='BB_1285'>BB_1285</option>
+                        <option value='BB_1286'>BB_1286</option>
+                        <option value='BB_1287'>BB_1287</option>
+                        <option value='BB_1288'>BB_1288</option>
+                        <option value='BB_1289'>BB_1289</option>
+                        <option value='BB_1290'>BB_1290</option>
+                        <option value='BB_1291'>BB_1291</option>
+                        <option value='BB_1292'>BB_1292</option>
+                        <option value='BB_1293'>BB_1293</option>
+                        <option value='BB_1294'>BB_1294</option>
+                        <option value='BB_1295'>BB_1295</option>
+                        <option value='BB_1296'>BB_1296</option>
+                        <option value='BB_1297'>BB_1297</option>
+                        <option value='BB_1298'>BB_1298</option>
+                        <option value='BB_1308'>BB_1308</option>
+                        <option value='BB_1309'>BB_1309</option>
+                        <option value='BB_1310'>BB_1310</option>
+                        <option value='BB_1374'>BB_1374</option>
+                        <option value='BB_1415'>BB_1415</option>
+                        <option value='BB_1439'>BB_1439</option>
+                        <option value='BB_1441'>BB_1441</option>
+                        <option value='BB_1443'>BB_1443</option>
+                        <option value='BB_1486'>BB_1486</option>
+                        <option value='BB_1487'>BB_1487</option>
+                        <option value='BB_1489'>BB_1489</option>
+                        <option value='BB_1490'>BB_1490</option>
+                        <option value='BB_1491'>BB_1491</option>
+                        <option value='BB_1494'>BB_1494</option>
+                        <option value='BB_1495'>BB_1495</option>
+                        <option value='BB_1497'>BB_1497</option>
+                        <option value='BB_1499'>BB_1499</option>
+                        <option value='BB_1500'>BB_1500</option>
+                        <option value='BB_1501'>BB_1501</option>
+                        <option value='BB_1502'>BB_1502</option>
+                        <option value='BB_1503'>BB_1503</option>
+                        <option value='BB_1504'>BB_1504</option>
+                        <option value='BB_1505'>BB_1505</option>
+                        <option value='BB_1506'>BB_1506</option>
+                        <option value='BB_1507'>BB_1507</option>
+                        <option value='BB_1508'>BB_1508</option>
+                        <option value='BB_1510'>BB_1510</option>
+                        <option value='BB_1511'>BB_1511</option>
+                        <option value='BB_1512'>BB_1512</option>
+                        <option value='BB_1513'>BB_1513</option>
+                        <option value='BB_1514'>BB_1514</option>
+                        <option value='BB_1515'>BB_1515</option>
+                        <option value='BB_1516'>BB_1516</option>
+                        <option value='BB_1517'>BB_1517</option>
+                        <option value='BB_1518'>BB_1518</option>
+                        <option value='BB_1519'>BB_1519</option>
+                        <option value='BB_1521'>BB_1521</option>
+                        <option value='BB_1524'>BB_1524</option>
+                        <option value='BB_1526'>BB_1526</option>
+                        <option value='BB_1527'>BB_1527</option>
+                        <option value='BB_1530'>BB_1530</option>
+                        <option value='BB_1531'>BB_1531</option>
+                        <option value='BB_1532'>BB_1532</option>
+                        <option value='BB_1533'>BB_1533</option>
+                        <option value='BB_1534'>BB_1534</option>
+                        <option value='BB_1535'>BB_1535</option>
+                        <option value='BB_1536'>BB_1536</option>
+                        <option value='BB_1537'>BB_1537</option>
+                        <option value='BB_1539'>BB_1539</option>
+                        <option value='BB_1540'>BB_1540</option>
+                        <option value='BB_1541'>BB_1541</option>
+                        <option value='BB_1542'>BB_1542</option>
+                        <option value='BB_1543'>BB_1543</option>
+                        <option value='BB_1544'>BB_1544</option>
+                        <option value='BB_1545'>BB_1545</option>
+                        <option value='BB_1546'>BB_1546</option>
+                        <option value='BB_1547'>BB_1547</option>
+                        <option value='BB_1548'>BB_1548</option>
+                        <option value='BB_1549'>BB_1549</option>
+                        <option value='BB_1550'>BB_1550</option>
+                        <option value='BB_1551'>BB_1551</option>
+                        <option value='BB_1552'>BB_1552</option>
+                        <option value='BB_1553'>BB_1553</option>
+                        <option value='BB_1554'>BB_1554</option>
+                        <option value='BB_1555'>BB_1555</option>
+                        <option value='BB_1556'>BB_1556</option>
+                        <option value='BB_1557'>BB_1557</option>
+                        <option value='BB_1558'>BB_1558</option>
+                        <option value='BB_1561'>BB_1561</option>
+                        <option value='BB_1562'>BB_1562</option>
+                        <option value='BB_1563'>BB_1563</option>
+                        <option value='BB_1564'>BB_1564</option>
+                        <option value='BB_1572'>BB_1572</option>
+                        <option value='BB_1573'>BB_1573</option>
+                        <option value='BB_1574'>BB_1574</option>
+                        <option value='BB_1576'>BB_1576</option>
+                        <option value='BB_1577'>BB_1577</option>
+                        <option value='BB_1581'>BB_1581</option>
+                        <option value='BB_1601'>BB_1601</option>
+                </select>
+            </div>
 
-        function optionChanged(route){
-            Plotly.d3.json(`/samples/${route}`, function(error, data){
-                updatePlotly(data);
-            });
-        }   
-    </script>
+            <div class="col-md-8">
+                <div id="pie"></div>
+                <script>        
+                    // Plot the default route once the page loads
+                    var url = "/samples/BB_940";
+                    Plotly.d3.json(url, function(error, response) {
+                        if (error) return console.warn(error);
+                        console.log(response);
+                        data = [response];
+                        var layout = {
+                            title: "PIE chart",
+                            showlegend: true};
+                        var PIE = document.getElementById('pie');
+                        Plotly.plot(PIE, data, layout)
+                    })
 
-    <div id="bubble"></div>
-    <script>
-        var otuurl = "/samples/BB_940/otu";
-        Plotly.d3.json(otuurl, function(error, response) {
-            if (error) return console.warn(error);
-            console.log(response);
-            var data = [response];
-            var layout = {
-                title: 'Bubble Chart',
-                showlegend: false,
-                height: 600,
-                width: 1200
-                };
-            var BUBBLE = document.getElementById('bubble');
-            Plotly.plot(BUBBLE, data, layout)
-        })
+                    function updatePlotly(newdata){
+                        var PIE = document.getElementById('pie');
+                        Plotly.restyle(PIE, 'values', [newdata.values]);
+                        Plotly.restyle(PIE, 'hovertext', [newdata.hovertext]);
+                        Plotly.restyle(PIE, 'labels', [newdata.labels])
+                    }
 
-       // function updateBUBBLEPlotly(newdata){
-           // var PLOT = document.getElementById('bubble');
-            //Plotly.restyle(BUBBLE, 'x', [newdata1.x]);
-           // Plotly.restyle(BUBBLE, 'y', [newdata1.y]);
-            //Plotly.restyle(BUBBLE, 'hovertext', [newdata1.hovertext])
-            //Plotly.restyle(BUBBLE, 'marker.size.y', [newdata1.marker.size.y])
-        //}
+                    function optionChanged(route){
+                        Plotly.d3.json(`/samples/${route}`, function(error, data){
+                            updatePlotly(data);
+                        });
+                    }   
+                </script>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div id="plot"></div>
+                <script>
+                    var otuurl = "/samples/BB_940/otu";
+                    Plotly.d3.json(otuurl, function(error, response) {
+                        if (error) return console.warn(error);
+                        console.log(response);
+                        var data = [response];
+                        var layout = {
+                            title: 'Bubble Plot',
+                            showlegend: false
+                            };
+                        var PLOT = document.getElementById('plot');
+                        Plotly.plot(PLOT, data, layout)
+                    })
 
-        //function optionChanged(route){
-            //Plotly.d3.json(`/samples/${route}/otu`, function(error, data1){
-                //updateBUBBLEPlotly(data1);
-            //});
-        //}   
-    </script>
-   
-    <select id='selDataset' onchange='optionChanged(this.value)'>
-            <option value='BB_940'>BB_940</option>
-            <option value='BB_941'>BB_941</option>
-            <option value='BB_943'>BB_943</option>
-            <option value='BB_944'>BB_944</option>
-            <option value='BB_945'>BB_945</option>
-            <option value='BB_946'>BB_946</option>
-            <option value='BB_947'>BB_947</option>
-            <option value='BB_948'>BB_948</option>
-            <option value='BB_949'>BB_949</option>
-            <option value='BB_950'>BB_950</option>
-            <option value='BB_952'>BB_952</option>
-            <option value='BB_953'>BB_953</option>
-            <option value='BB_954'>BB_954</option>
-            <option value='BB_955'>BB_955</option>
-            <option value='BB_956'>BB_956</option>
-            <option value='BB_958'>BB_958</option>
-            <option value='BB_959'>BB_959</option>
-            <option value='BB_960'>BB_960</option>
-            <option value='BB_961'>BB_961</option>
-            <option value='BB_962'>BB_962</option>
-            <option value='BB_963'>BB_963</option>
-            <option value='BB_964'>BB_964</option>
-            <option value='BB_966'>BB_966</option>
-            <option value='BB_967'>BB_967</option>
-            <option value='BB_968'>BB_968</option>
-            <option value='BB_969'>BB_969</option>
-            <option value='BB_970'>BB_970</option>
-            <option value='BB_971'>BB_971</option>
-            <option value='BB_972'>BB_972</option>
-            <option value='BB_973'>BB_973</option>
-            <option value='BB_974'>BB_974</option>
-            <option value='BB_975'>BB_975</option>
-            <option value='BB_978'>BB_978</option>
-            <option value='BB_1233'>BB_1233</option>
-            <option value='BB_1234'>BB_1234</option>
-            <option value='BB_1235'>BB_1235</option>
-            <option value='BB_1236'>BB_1236</option>
-            <option value='BB_1237'>BB_1237</option>
-            <option value='BB_1238'>BB_1238</option>
-            <option value='BB_1242'>BB_1242</option>
-            <option value='BB_1243'>BB_1243</option>
-            <option value='BB_1246'>BB_1246</option>
-            <option value='BB_1253'>BB_1253</option>
-            <option value='BB_1254'>BB_1254</option>
-            <option value='BB_1258'>BB_1258</option>
-            <option value='BB_1259'>BB_1259</option>
-            <option value='BB_1260'>BB_1260</option>
-            <option value='BB_1264'>BB_1264</option>
-            <option value='BB_1265'>BB_1265</option>
-            <option value='BB_1273'>BB_1273</option>
-            <option value='BB_1275'>BB_1275</option>
-            <option value='BB_1276'>BB_1276</option>
-            <option value='BB_1277'>BB_1277</option>
-            <option value='BB_1278'>BB_1278</option>
-            <option value='BB_1279'>BB_1279</option>
-            <option value='BB_1280'>BB_1280</option>
-            <option value='BB_1281'>BB_1281</option>
-            <option value='BB_1282'>BB_1282</option>
-            <option value='BB_1283'>BB_1283</option>
-            <option value='BB_1284'>BB_1284</option>
-            <option value='BB_1285'>BB_1285</option>
-            <option value='BB_1286'>BB_1286</option>
-            <option value='BB_1287'>BB_1287</option>
-            <option value='BB_1288'>BB_1288</option>
-            <option value='BB_1289'>BB_1289</option>
-            <option value='BB_1290'>BB_1290</option>
-            <option value='BB_1291'>BB_1291</option>
-            <option value='BB_1292'>BB_1292</option>
-            <option value='BB_1293'>BB_1293</option>
-            <option value='BB_1294'>BB_1294</option>
-            <option value='BB_1295'>BB_1295</option>
-            <option value='BB_1296'>BB_1296</option>
-            <option value='BB_1297'>BB_1297</option>
-            <option value='BB_1298'>BB_1298</option>
-            <option value='BB_1308'>BB_1308</option>
-            <option value='BB_1309'>BB_1309</option>
-            <option value='BB_1310'>BB_1310</option>
-            <option value='BB_1374'>BB_1374</option>
-            <option value='BB_1415'>BB_1415</option>
-            <option value='BB_1439'>BB_1439</option>
-            <option value='BB_1441'>BB_1441</option>
-            <option value='BB_1443'>BB_1443</option>
-            <option value='BB_1486'>BB_1486</option>
-            <option value='BB_1487'>BB_1487</option>
-            <option value='BB_1489'>BB_1489</option>
-            <option value='BB_1490'>BB_1490</option>
-            <option value='BB_1491'>BB_1491</option>
-            <option value='BB_1494'>BB_1494</option>
-            <option value='BB_1495'>BB_1495</option>
-            <option value='BB_1497'>BB_1497</option>
-            <option value='BB_1499'>BB_1499</option>
-            <option value='BB_1500'>BB_1500</option>
-            <option value='BB_1501'>BB_1501</option>
-            <option value='BB_1502'>BB_1502</option>
-            <option value='BB_1503'>BB_1503</option>
-            <option value='BB_1504'>BB_1504</option>
-            <option value='BB_1505'>BB_1505</option>
-            <option value='BB_1506'>BB_1506</option>
-            <option value='BB_1507'>BB_1507</option>
-            <option value='BB_1508'>BB_1508</option>
-            <option value='BB_1510'>BB_1510</option>
-            <option value='BB_1511'>BB_1511</option>
-            <option value='BB_1512'>BB_1512</option>
-            <option value='BB_1513'>BB_1513</option>
-            <option value='BB_1514'>BB_1514</option>
-            <option value='BB_1515'>BB_1515</option>
-            <option value='BB_1516'>BB_1516</option>
-            <option value='BB_1517'>BB_1517</option>
-            <option value='BB_1518'>BB_1518</option>
-            <option value='BB_1519'>BB_1519</option>
-            <option value='BB_1521'>BB_1521</option>
-            <option value='BB_1524'>BB_1524</option>
-            <option value='BB_1526'>BB_1526</option>
-            <option value='BB_1527'>BB_1527</option>
-            <option value='BB_1530'>BB_1530</option>
-            <option value='BB_1531'>BB_1531</option>
-            <option value='BB_1532'>BB_1532</option>
-            <option value='BB_1533'>BB_1533</option>
-            <option value='BB_1534'>BB_1534</option>
-            <option value='BB_1535'>BB_1535</option>
-            <option value='BB_1536'>BB_1536</option>
-            <option value='BB_1537'>BB_1537</option>
-            <option value='BB_1539'>BB_1539</option>
-            <option value='BB_1540'>BB_1540</option>
-            <option value='BB_1541'>BB_1541</option>
-            <option value='BB_1542'>BB_1542</option>
-            <option value='BB_1543'>BB_1543</option>
-            <option value='BB_1544'>BB_1544</option>
-            <option value='BB_1545'>BB_1545</option>
-            <option value='BB_1546'>BB_1546</option>
-            <option value='BB_1547'>BB_1547</option>
-            <option value='BB_1548'>BB_1548</option>
-            <option value='BB_1549'>BB_1549</option>
-            <option value='BB_1550'>BB_1550</option>
-            <option value='BB_1551'>BB_1551</option>
-            <option value='BB_1552'>BB_1552</option>
-            <option value='BB_1553'>BB_1553</option>
-            <option value='BB_1554'>BB_1554</option>
-            <option value='BB_1555'>BB_1555</option>
-            <option value='BB_1556'>BB_1556</option>
-            <option value='BB_1557'>BB_1557</option>
-            <option value='BB_1558'>BB_1558</option>
-            <option value='BB_1561'>BB_1561</option>
-            <option value='BB_1562'>BB_1562</option>
-            <option value='BB_1563'>BB_1563</option>
-            <option value='BB_1564'>BB_1564</option>
-            <option value='BB_1572'>BB_1572</option>
-            <option value='BB_1573'>BB_1573</option>
-            <option value='BB_1574'>BB_1574</option>
-            <option value='BB_1576'>BB_1576</option>
-            <option value='BB_1577'>BB_1577</option>
-            <option value='BB_1581'>BB_1581</option>
-            <option value='BB_1601'>BB_1601</option>
-    </select>
+                    function updatebubblePlotly(newdata){
+                        var PLOT = document.getElementById('plot');
+                        Plotly.restyle(PLOT, 'x', [newdata.x]);
+                        Plotly.restyle(PLOT, 'y', [newdata.y]);
+                        Plotly.restyle(PLOT, 'hovertext', [newdata.hovertext])
+                        Plotly.restyle(PLOT, 'marker.size.y', [newdata.marker.size.y])
+                    }
+
+                    function optionChanged2(route){
+                        Plotly.d3.json(`/samples/${route}/otu`, function(error, data){
+                            updatebubblePlotly(data);
+                        });
+                    }   
+                </script>
+            </div>
+        </div> 
+    </div> 
+
 
 </body>
 </html>

@@ -19,7 +19,6 @@ def samples(sample):
     text = otudf['lowest_taxonomic_unit_found'].values.tolist()
 
     tempdf = pd.DataFrame({'a': y, 'b': x, 'c': text})
-
     selecttempdf = tempdf.nlargest(10, 'a')
 
     values = selecttempdf["a"].values.tolist()
@@ -35,9 +34,16 @@ def samplesotu(sample):
 
     x = otudf['otu_id'].values.tolist()
     y = df[sample].values.tolist()
-    hovertext = otudf['lowest_taxonomic_unit_found'].values.tolist()
+    text = otudf['lowest_taxonomic_unit_found'].values.tolist()
 
-    bubbledata = {"x": x, "y": y, "hovertext": hovertext, "mode": "markers", "marker": {"size": y}}
+    tempdf = pd.DataFrame({'a': y, 'b': x, 'c': text})
+    selecttempdf = tempdf.dropna()
+
+    newx = selecttempdf['b'].values.tolist()
+    newy = selecttempdf['a'].values.tolist()
+    newtext = selecttempdf['c'].values.tolist()
+
+    bubbledata = {"x": newx, "y": newy, "hovertext": newtext, "mode": "markers", "marker": {"size": newy}}
 
     return jsonify(bubbledata)
 
